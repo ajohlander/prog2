@@ -1,0 +1,49 @@
+/* 
+Inlupp 1, Programmeringsteknik II, Andreas Johlander
+*/
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+public class Window
+	extends JFrame 
+	   implements ActionListener{
+	private int size;
+	private Box frame;
+	private int sleep;
+	private Timer timer;
+
+	public Window(String title,int size, int n, int sleep){
+		super(title);
+		this.size = size;
+		this.sleep = sleep;
+		//int n = 1; 
+		
+		//this.frame = new Box();
+		setPreferredSize(new Dimension(size,size));
+		setLayout(new FlowLayout());
+		timer = new Timer(sleep, this);
+		this.frame = new Box(size,n);
+		this.add(frame);
+		this.setVisible( true );
+		this.pack();
+		setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE );
+		timer.start();
+	}
+
+	public void pause(){
+		timer.stop();
+	}
+
+	public void start(){
+		timer.start();
+	}
+
+
+   public void actionPerformed(ActionEvent e) {
+      frame.step();
+   }
+			
+
+}
+

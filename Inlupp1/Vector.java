@@ -1,0 +1,66 @@
+/* 
+Inlupp 1, Programmeringsteknik II, Andreas Johlander
+*/
+public class Vector { //2-D vector
+	private double x;
+	private double y;
+
+	public Vector(){
+		this.x = 0;
+		this.y = 0;
+	}
+
+	public Vector(double x, double y){
+		this.x = x;
+		this.y = y;
+	}
+
+	public Vector add(Vector v1) {
+		Vector v2 = new Vector(this.x + v1.x,this.y + v1.y);
+		return v2;	
+	}
+
+	public Vector sub(Vector v1) {
+		Vector v2 = new Vector(this.x - v1.x,this.y - v1.y);
+		return v2;	
+	}
+
+	public double dot(Vector v){
+		double product = this.x*v.x + this.y*v.y;
+		return product;
+	}
+
+	public double norm() {
+		double length = Math.sqrt(this.x*this.x+this.y*this.y);
+		return length;
+	}
+
+	public void setX(double x){
+		this.x = x;
+	}
+
+	public void setY(double y){
+		this.y = y;
+	}
+	
+	public Vector mult(double a){
+		Vector v = new Vector(a*x,a*y);
+		return v;
+	}
+
+	public double getX(){
+		return this.x;
+	}
+
+	public double getY(){
+		return this.y;
+	}
+
+	public String toString(){
+		String str = "[" + this.x +","+ this.y +"]";
+		return str;
+	}
+}
+
+
+

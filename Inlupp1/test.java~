@@ -1,0 +1,10 @@
+public class test{
+
+	public static void main(String[] args){
+		Vector v1 = new Vector(3,2);
+		Vector v2 = new Vector(-3,0);
+		Vector v3 = v1.add(v2);
+		double r = v1.norm();
+		System.out.println(r);
+	}
+}
