@@ -53,5 +53,8 @@ public abstract class Sexpr {
 	public boolean isConstant(double x) {
 		return false; 
 	}
+	public boolean isQuot(){
+		return false;
+	}
 
 }

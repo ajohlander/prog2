@@ -25,10 +25,13 @@ extends Atom
 	}
 
 	public Sexpr diff(Sexpr x){
-		System.out.println("Returning diff of Variable");
-		if(this.name == x.getName())
+		//System.out.println("Returning diff of Variable");
+		//System.out.println("this.name: "+ this.name + "\t x.getName(): "+ x.getName());
+		if( this.name.equals(x.getName()) ){
 			return new Constant(1);
-		else
-			return new Constant(0); 
+		}else if (x.isConstant()){
+			return x;
+		}else
+			return new Constant(0);
 	}
 }

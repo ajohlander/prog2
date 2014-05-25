@@ -3,15 +3,15 @@
  */
 import java.util.Map;
 
-public class Sin
+public class Log
 extends Function
 {
-	public Sin(Sexpr operand) {
+	public Log(Sexpr operand) {
 		super(operand);
 	}
 
 	public String getName() {
-		return "sin";
+		return "log";
 	}
 
 	public int priority() {
@@ -19,10 +19,10 @@ extends Function
 	}
 
 	public Sexpr eval(Map<String, Sexpr>map) {
-		return Symbolic.sin(operand.eval(map));
+		return Symbolic.log(operand.eval(map));
 	}
 	
 	public Sexpr diff(Sexpr x) {
-		return Symbolic.mul(Symbolic.cos(operand),Symbolic.diff(operand, x));
+		return Symbolic.div(new Constant(1),operand);
 	}
 }

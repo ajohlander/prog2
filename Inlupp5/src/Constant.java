@@ -33,7 +33,8 @@ public class Constant
   }
   
   public Sexpr diff(Sexpr x){
-	  System.out.println("Returns diff of Constant!");
+	  /*System.out.println("Returns diff of Constant!");
+	  System.out.println(this.getName());*/
 	  return new Constant(0);
 	  
   }

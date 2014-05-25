@@ -1,25 +1,24 @@
 /**
- * Represents the negation operation ("unary minus")
+ * Represents the quotation operation
  */
 import java.util.Map;
 
-public class Negation
+public class Evaluation
 extends Operator
 {
-	public Negation(Sexpr operand) {
+	public Evaluation(Sexpr operand) {
 		super(operand);
 	}
 
 	public String getName() {
-		return "-";
+		return "&";
 	}
 
 	public Sexpr eval(Map<String, Sexpr> map) {
-		return Symbolic.negate(operand.eval(map));
+		return operand;
 	}
-
 	public Sexpr diff(Sexpr x) {
-		System.out.println("aloha!");
 		return Symbolic.diff(operand,x);
 	}
+	
 }

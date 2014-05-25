@@ -47,18 +47,22 @@ public class Parser {
 	public Sexpr expression() {
 		Sexpr sum = term();
 		int c;
-		while ((c=tokenizer.getChar()) == '+') {
+		while ((c=tokenizer.getChar()) == '+' || c == '-') {
 			tokenizer.nextToken();
 			if (c=='+') {
 				sum = new Addition(sum, term());
-			}
-		}
-		while ((c=tokenizer.getChar()) == '-') {
-			tokenizer.nextToken();
-			if (c=='-') {
+			}else if (c=='-') {
+				//System.out.println("hej");
 				sum = new Subtraction(sum, term());
 			}
 		}
+		/*while ((c=tokenizer.getChar()) == '-') {
+			tokenizer.nextToken();
+			if (c=='-') {
+				System.out.println("hej");
+				sum = new Subtraction(sum, term());
+			}
+		}*/
 		return sum;
 	}
 
@@ -68,18 +72,20 @@ public class Parser {
 	public Sexpr term() {
 		int c;
 		Sexpr prod = factor();
-		while ((c=tokenizer.getChar()) == '*'){
+		while ((c=tokenizer.getChar()) == '*' || c == '/'){
 			tokenizer.nextToken();
 			if (c=='*') {
 				prod = new Multiplication(prod, factor());
+			}else if (c=='/') {
+				prod = new Division(prod, factor());
 			} 
 		}
-		while ((c=tokenizer.getChar()) == '/'){
+		/*while ((c=tokenizer.getChar()) == '/'){
 			tokenizer.nextToken();
 			if (c=='/') {
 				prod = new Division(prod, factor());
 			} 
-		}
+		}*/
 		return prod;
 	}
 
@@ -93,8 +99,6 @@ public class Parser {
 		while (tokenizer.getChar() == s.charAt(0)) {
 			tokenizer.nextToken();
 			if (tokenizer.isWord()) {
-				//Something
-				System.out.println("sdsd");
 				value = new Differentiation(value, new Variable(tokenizer.getWord()));
 				tokenizer.nextToken();
 			} else {
@@ -134,6 +138,10 @@ public class Parser {
 			tokenizer.nextToken();
 			result = new Quotation(primary());  
 		} 
+		else if(tokenizer.getChar() == '&') {
+			tokenizer.nextToken();
+			result = new Evaluation(primary()); 
+		}
 
 		else if (tokenizer.isNumber()) {           // Number
 			result = new Constant(tokenizer.getNumber());
@@ -196,6 +204,19 @@ public class Parser {
 				}
 			} 
 			return new Exp(result);
+			
+		}else if(functionName.equals("log")){
+			Sexpr result = null;
+			if (tokenizer.getChar() == '(') {          // Parentheses
+				tokenizer.nextToken(); 
+				result = assignment();
+				if (tokenizer.getChar() == ')') {
+					tokenizer.nextToken();
+				} else {
+					throw new SyntaxException("Expected ')'");
+				}
+			} 
+			return new Log(result);
 		}else{
 
 			throw 
