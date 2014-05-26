@@ -11,6 +11,14 @@ public class Symbolic {
 	public static Sexpr add(Sexpr left, Sexpr right) {
 		if (left.isConstant() && right.isConstant())
 			return new Constant(left.getValue() + right.getValue());
+		else if (left.isConstant() && left.getValue()==0)
+			return right;
+		else if (right.isConstant() && right.getValue()==0)
+			return left;
+		else if (left.isVariable() && right.isVariable() && left.getName().equals(right.getName()) )
+			return new Multiplication(new Constant(2),left);
+		
+		
 		else
 			return new Addition(left, right);
 	}
@@ -76,31 +84,7 @@ public class Symbolic {
 	}
 	
 	public static Sexpr diff(Sexpr left, Sexpr right){
-		/* if (left.isConstant()){
-	    	System.out.println("hello");
-	        return new Constant(0);
-	    }else if(left == right){
-	    	return new Constant(1);
-		 */
-
-
-		/*
-		if(left.isConstant()){
-			System.out.println("hello");
-			return new Constant(left.diff(right).getValue());
-		}else if(left.isVariable()){
-			System.out.println("mondaykid");
-			return new Variable(left.diff(right).getName());
-		}else if(left.isMult()){
-			return new Multiplication(left.diff(right),new Constant(1));
-		}else{*/
-
-		//System.out.println("mondaykid");
-		//System.out.println("Is quotation: " + left.isQuot());
-		
-		
 		return left.diff(right);
-		//new Differentiation(left, right);
 	}
 
 

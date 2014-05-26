@@ -15,7 +15,7 @@ public abstract class Operator
       return getName() + operand;
   }
   
-  public int priority() {
+  /*public int priority() {
     return 40;
-  }
+  }*/
 }

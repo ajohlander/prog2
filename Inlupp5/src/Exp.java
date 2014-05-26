@@ -14,10 +14,6 @@ extends Function
 		return "exp";
 	}
 
-	public int priority() {
-		return 40;
-	}
-
 	public Sexpr eval(Map<String, Sexpr>map) {
 		return Symbolic.exp(operand.eval(map));
 	}

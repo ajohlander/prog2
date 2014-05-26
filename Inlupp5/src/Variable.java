@@ -34,4 +34,8 @@ extends Atom
 		}else
 			return new Constant(0);
 	}
+	
+	public boolean isVariable(){
+		return true;
+	}
 }

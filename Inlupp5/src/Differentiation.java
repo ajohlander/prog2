@@ -8,8 +8,6 @@ public class Differentiation
   
   public Differentiation(Sexpr left, Sexpr right) {
     super(left, right);
-	if(left.isQuot())
-		  System.out.println("Whoo!");
 	  
   }
   
@@ -18,10 +16,10 @@ public class Differentiation
   }
   
   public int priority() {
-    return 100;
+    return 40;
   }
   
   public Sexpr eval(Map<String,Sexpr> map) {
-	  return Symbolic.diff(left, right); 
+	  return Symbolic.diff(left.eval(map), right); 
   }
 }

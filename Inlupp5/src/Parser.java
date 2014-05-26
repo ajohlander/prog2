@@ -167,7 +167,6 @@ public class Parser {
 	}
 
 	public Sexpr function(String functionName) {
-		System.out.println(functionName);
 		if(functionName.equals("sin")){
 			Sexpr result = null;
 			if (tokenizer.getChar() == '(') {          // Parentheses

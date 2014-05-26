@@ -18,11 +18,7 @@ extends Operator
 		return operand;
 	}
 	public Sexpr diff(Sexpr x) {
-		System.out.println("this is the diff of a quotation!");
+		//System.out.println("this is the diff of a quotation!");
 		return Symbolic.diff(operand,x);
-	}
-	
-	public boolean isQuot(){
-		return true;
 	}
 }

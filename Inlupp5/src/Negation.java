@@ -17,9 +17,4 @@ extends Operator
 	public Sexpr eval(Map<String, Sexpr> map) {
 		return Symbolic.negate(operand.eval(map));
 	}
-
-	public Sexpr diff(Sexpr x) {
-		System.out.println("aloha!");
-		return Symbolic.diff(operand,x);
-	}
 }

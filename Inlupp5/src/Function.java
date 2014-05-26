@@ -11,5 +11,9 @@ public abstract class Function
   public String toString() {
     return getName() + "(" + operand + ")";
   }
+	
+  /*public int priority() {
+		return 40;
+	}*/
   
 }

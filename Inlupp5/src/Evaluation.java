@@ -15,10 +15,6 @@ extends Operator
 	}
 
 	public Sexpr eval(Map<String, Sexpr> map) {
-		return operand;
+		return operand.eval(map).eval(map);
 	}
-	public Sexpr diff(Sexpr x) {
-		return Symbolic.diff(operand,x);
-	}
-	
 }

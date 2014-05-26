@@ -22,7 +22,7 @@ public abstract class Sexpr {
 	 * are needed around the component.
 	 */
 	public int priority() {
-		return 100; 
+		return 40; 
 	}
 
 	/**
@@ -53,7 +53,8 @@ public abstract class Sexpr {
 	public boolean isConstant(double x) {
 		return false; 
 	}
-	public boolean isQuot(){
+	
+	public boolean isVariable(){
 		return false;
 	}
 

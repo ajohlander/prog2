@@ -14,15 +14,11 @@ extends Function
 		return "cos";
 	}
 
-	public int priority() {
-		return 40;
-	}
-
 	public Sexpr eval(Map<String, Sexpr>map) {
 		return Symbolic.cos(operand.eval(map));
 	}
 	
 	public Sexpr diff(Sexpr x) {
-		return Symbolic.mul(new Constant(-1),Symbolic.sin(operand));
+		return Symbolic.mul(Symbolic.mul(new Constant(-1),Symbolic.sin(operand)),Symbolic.diff(operand,x));
 	}
 }
